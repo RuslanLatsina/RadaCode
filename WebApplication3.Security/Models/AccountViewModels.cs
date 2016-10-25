@@ -48,10 +48,10 @@ namespace RadaCode.Security.Models
 
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        //[Required]
+        //[Display(Name = "Email")]
+        //[EmailAddress]
+        //public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -60,6 +60,11 @@ namespace RadaCode.Security.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        [Required]
+        [Display(Name = "UserName")]
+        [StringLength(100)]
+        public string UserName { get; set; }
     }
 
     public class RegisterViewModel

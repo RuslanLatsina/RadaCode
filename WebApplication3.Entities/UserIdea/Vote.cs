@@ -1,7 +1,6 @@
-﻿using System;
+﻿using RadaCode.Entities.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using RadaCode.Entities.Identity;
 
 namespace RadaCode.Entities.UserIdea
 {
