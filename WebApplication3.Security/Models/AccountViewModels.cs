@@ -1,13 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNet.Identity;
 
 namespace RadaCode.Security.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
+        
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Display(Name = "Login")]
+        public UserLoginInfo Login { get; set; }
+
+        [Required]
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
     }
 
     public class ExternalLoginListViewModel

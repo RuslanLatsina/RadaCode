@@ -21,6 +21,8 @@ namespace RadaCode.Entities.Identity
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime RegistrationDate { get; set; }
 
+        public int HaveVotes { get; set; } 
+
         public ICollection<Vote> Votes { get; set; }
 
 

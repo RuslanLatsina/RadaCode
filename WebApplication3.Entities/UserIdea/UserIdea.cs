@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace RadaCode.Entities.UserIdea
 {
@@ -12,7 +13,10 @@ namespace RadaCode.Entities.UserIdea
         }
 
         public int Id { get; set; }
+        [Required]
         public string Idea { get; set; }
+
+        public int  NumberOfVotes { get; set; }
         
         public virtual ICollection<Vote> Votes { get; set; }
     }
