@@ -1,0 +1,57 @@
+﻿@model RadaCode.Security.ViewModels.IdeasViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<h1>@Model.Heading</h1>
+<ul class="">
+    @foreach (var userIdea in Model.UserIdeas)
+    {
+        <li class="list-group-item">
+            <div class="Idea">
+                @userIdea.Idea
+
+            </div>
+            <div class="Author">
+                <span class="label label-warning">@userIdea.User.UserName</span>
+                @if (Model.ShowActions)
+                {
+                    <button data-idea-id="@userIdea.Id" data-idea-isLike="True" class="btn btn-default btn-sm pull-right js-toggle-like">Like</button>
+                    <button data-idea-id="@userIdea.Id" data-idea-isUnLike="False" class="btn btn-default btn-sm pull-right js-toggle-Unlike">UnLike</button>
+                }
+            </div>
+            
+            
+        </li>
+    }
+</ul>
+
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $(".js-toggle-like").click(function(e) {
+                var button = $(e.target);
+                $.post("/api/votes",
+                    {
+                        IdeaId: button.attr("data-idea-id")
+                    })
+                    .done(function() {
+                        button
+                            .removeClass("btn-default")
+                            .addClass("btn-info")
+
+                            .text("Like");
+                    })
+                    .fail(function() {
+                        alert("Something failed!");
+                    });
+            });
+
+           
+        });
+    </script>
+    
+}

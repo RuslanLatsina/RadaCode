@@ -13,9 +13,15 @@ namespace RadaCode.Dal
         }
 
         public DbSet<Vote> Votes { get; set; }
+        public DbSet<UserIdea> Ideas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Vote>()
+                   .HasRequired(a => a.UserIdea)
+                   .WithMany()
+                   .WillCascadeOnDelete(false);
+
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ApplicationUser>().ToTable("Users");
 

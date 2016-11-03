@@ -89,13 +89,9 @@
     <Compile Include="ApplicationUserStore.cs" />
     <Compile Include="Managers\ApplicationSignInManager.cs" />
     <Compile Include="Managers\ApplicationUserManager.cs" />
-    <Compile Include="Migrations\201610231705564_Initial.cs" />
-    <Compile Include="Migrations\201610231705564_Initial.Designer.cs">
-      <DependentUpon>201610231705564_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610291013550_addNumberOfVotes.cs" />
-    <Compile Include="Migrations\201610291013550_addNumberOfVotes.Designer.cs">
-      <DependentUpon>201610291013550_addNumberOfVotes.cs</DependentUpon>
+    <Compile Include="Migrations\201611011741470_initial.cs" />
+    <Compile Include="Migrations\201611011741470_initial.Designer.cs">
+      <DependentUpon>201611011741470_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,11 +107,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610231705564_Initial.resx">
-      <DependentUpon>201610231705564_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610291013550_addNumberOfVotes.resx">
-      <DependentUpon>201610291013550_addNumberOfVotes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611011741470_initial.resx">
+      <DependentUpon>201611011741470_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

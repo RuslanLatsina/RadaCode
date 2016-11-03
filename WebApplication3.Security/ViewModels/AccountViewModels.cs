@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 
-namespace RadaCode.Security.Models
+namespace RadaCode.Security.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {

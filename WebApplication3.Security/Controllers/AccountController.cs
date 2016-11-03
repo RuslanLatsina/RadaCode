@@ -8,8 +8,8 @@ using Microsoft.Owin.Security;
 using RadaCode.Dal;
 using RadaCode.Dal.Managers;
 using RadaCode.Entities.Identity;
-using RadaCode.Security.Models;
-using System.Web.Http;
+
+using RadaCode.Security.ViewModels;
 
 namespace RadaCode.Controllers
 {

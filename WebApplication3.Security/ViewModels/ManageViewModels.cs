@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace RadaCode.Models
+namespace RadaCode.Security.ViewModels
 {
     public class IndexViewModel
     {

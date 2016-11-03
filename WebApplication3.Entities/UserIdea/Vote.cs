@@ -14,6 +14,8 @@ namespace RadaCode.Entities.UserIdea
         [Required]
         public string UserId { get; set; }
 
+        public bool IsLike { get; set; }
+
         public virtual UserIdea UserIdea { get; set; }
 
         public virtual ApplicationUser User { get; set; }

@@ -15,7 +15,7 @@ namespace RadaCode.Entities.Identity
     {
         public ApplicationUser()
         {
-            Votes = new HashSet<Vote>();
+            
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
