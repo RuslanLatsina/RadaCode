@@ -4,6 +4,7 @@ using RadaCode.Dal;
 using RadaCode.Security.ViewModels;
 using System.Data.Entity;
 using System.Linq;
+using Microsoft.AspNet.Identity;
 
 namespace RadaCode.Security.Controllers
 {
@@ -20,13 +21,15 @@ namespace RadaCode.Security.Controllers
             var regdate = new DateTime(2015, 12, 1);
             var nowdate = new DateTime(2015, 12, 12);
             var number = 10 + ((int)(nowdate - regdate).TotalDays / 3);
-
-            var userIdeas = _context.Ideas.Include(g => g.User);
+            var userId = User.Identity.GetUserId();
+            var userIdeas = _context.Ideas.Include(g => g.User).Include(g => g.Votes);
+            var votes = _context.Votes.Where(a => a.UserId == userId);
 
             var viewModel = new IdeasViewModel
             {
                 UserIdeas = userIdeas,
                 ShowActions = User.Identity.IsAuthenticated,
+                Votes = votes,
                 Heading = "User Ideas"
             };
 

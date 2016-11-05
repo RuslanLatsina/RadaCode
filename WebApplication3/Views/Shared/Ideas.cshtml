@@ -1,12 +1,18 @@
-﻿@model RadaCode.Security.ViewModels.IdeasViewModel
+﻿@using RadaCode.Entities.UserIdea
+@model RadaCode.Security.ViewModels.IdeasViewModel
 
 @{
     ViewBag.Title = "Home Page";
 }
 <h1>@Model.Heading</h1>
+@using (Html.BeginForm("","Ideas"))
+{
+  
+}
 <ul class="">
     @foreach (var userIdea in Model.UserIdeas)
     {
+
         <li class="list-group-item">
             <div class="Idea">
                 @userIdea.Idea
@@ -16,8 +22,31 @@
                 <span class="label label-warning">@userIdea.User.UserName</span>
                 @if (Model.ShowActions)
                 {
-                    <button data-idea-id="@userIdea.Id" data-idea-isLike="True" class="btn btn-default btn-sm pull-right js-toggle-like">Like</button>
-                    <button data-idea-id="@userIdea.Id" data-idea-isUnLike="False" class="btn btn-default btn-sm pull-right js-toggle-Unlike">UnLike</button>
+                    var model = Model.Votes.FirstOrDefault(a => a.UserIdeaId == userIdea.Id);
+                    <button  class="btn 
+                             @(model != null && model.IsLike == false ? "btn-info" : "btn-default")
+                             btn-sm pull-right js-vote"
+                            data-idea-id="@userIdea.Id"
+                            data-idea-isLike="@false"
+                           >
+                        UnLike
+                    </button>
+
+                    <button
+                        class="btn 
+                         @(model != null && model.IsLike ? "btn-info" : "btn-default")
+                        btn-sm pull-right js-vote"
+                        data-idea-id="@userIdea.Id"
+                        data-idea-isLike="@true"
+                        >
+                        Like
+                    </button>
+
+                  
+                
+                    @*<input type="button" class="btn btn-info" value="Like" 
+                onclick="location.href='@Url.Action("Votes", "Ideas", new {IdeaId = userIdea.Id, IsLike = true })'" />
+                    <input type="button" class="btn btn-info" value="UnLike" onclick="location.href='@Url.Action("Votes", "Ideas", new {IdeaId = userIdea, IsLike = false })'" />*@
                 }
             </div>
             
@@ -25,33 +54,29 @@
         </li>
     }
 </ul>
-
-
-
 @section scripts
 {
     <script>
         $(document).ready(function() {
-            $(".js-toggle-like").click(function(e) {
+            $(".js-vote").click(function (e) {
                 var button = $(e.target);
-                $.post("/api/votes",
-                    {
-                        IdeaId: button.attr("data-idea-id")
-                    })
+                $.post("/api/Votes",
+                        {
+                            IdeaId: button.attr("data-idea-id"),
+                            IsLike: button.attr("data-idea-isLike")
+                        })
                     .done(function() {
                         button
                             .removeClass("btn-default")
-                            .addClass("btn-info")
-
-                            .text("Like");
+                            .addClass("btn-info") ;
                     })
                     .fail(function() {
                         alert("Something failed!");
                     });
             });
 
-           
         });
     </script>
-    
 }
+
+

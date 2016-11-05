@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.ObjectModel;
 using RadaCode.Entities.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace RadaCode.Entities.UserIdea
 {
@@ -18,6 +19,11 @@ namespace RadaCode.Entities.UserIdea
         public string UserId { get; set; }
 
         public int  NumberOfVotes { get; set; }
-        
+        public ICollection<Vote> Votes { get; private set; }
+
+        public UserIdea()
+        {
+            Votes = new Collection<Vote>();
+        }
     }
 }

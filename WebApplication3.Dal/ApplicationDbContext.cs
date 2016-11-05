@@ -19,7 +19,7 @@ namespace RadaCode.Dal
         {
             modelBuilder.Entity<Vote>()
                    .HasRequired(a => a.UserIdea)
-                   .WithMany()
+                   .WithMany(g => g.Votes)
                    .WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);

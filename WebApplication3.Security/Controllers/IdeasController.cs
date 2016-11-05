@@ -4,6 +4,7 @@ using RadaCode.Entities.UserIdea;
 using RadaCode.Security.ViewModels;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.Http.Results;
 using System.Web.Mvc;
 
 namespace RadaCode.Security.Controllers
@@ -32,7 +33,7 @@ namespace RadaCode.Security.Controllers
                 .Select(a => a.UserIdea)
                 .Include(g => g.User)
                 .ToList();
-
+            
             var viewModel = new IdeasViewModel()
             {
                 UserIdeas = ideas,
@@ -60,6 +61,33 @@ namespace RadaCode.Security.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Home");
+        }
+
+
+        
+        public ActionResult Votes(VoteViewModel viewModel)
+        {
+            var userId = User.Identity.GetUserId();
+            
+
+            if (_context.Votes.Any(a => a.UserId == userId && a.UserIdeaId == viewModel.IdeaId))
+                return Redirect("The choice already exists.");
+
+            var vote = new Vote
+            {
+                UserIdeaId = viewModel.IdeaId,
+                UserId = userId,
+                IsLike = viewModel.IsLike
+
+            };
+            _context.Votes.Add(vote);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index","Home");
+
+
+
+
         }
 
     }
