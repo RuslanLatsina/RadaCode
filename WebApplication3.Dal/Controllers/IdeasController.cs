@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNet.Identity;
-using RadaCode.Dal;
-using RadaCode.Entities.UserIdea;
-using RadaCode.Security.ViewModels;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Web.Http.Results;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using RadaCode.Entities.Models.Identity;
+using RadaCode.Entities.Models.UserIdea;
+using RadaCode.Entities.ViewModels;
 
-namespace RadaCode.Security.Controllers
+namespace RadaCode.Dal.Controllers
 {
     public class IdeasController : Controller
     {
@@ -25,19 +24,20 @@ namespace RadaCode.Security.Controllers
         }
 
         [Authorize]
-        public ActionResult LikeVotes()
+        public ActionResult LikeIdeas()
         {
-            var userId = User.Identity.GetUserId();
-            var ideas = _context.Votes
-                .Where(a => a.UserId == userId && a.IsLike == true)
-                .Select(a => a.UserIdea)
-                .Include(g => g.User)
-                .ToList();
-            
+            var userId = IdentityExtensions.GetUserId(User.Identity);
+            var votes = Queryable.Where<Vote>(_context.Votes, a => a.UserId == userId && a.IsLike);
+            var userIdeas = QueryableExtensions.Include<UserIdea, ApplicationUser>(_context.Ideas, g => g.User)
+                .Include(g => g.Votes)
+                .Where(g => g.Votes.FirstOrDefault(a => a.UserId == userId).IsLike);
+
+
             var viewModel = new IdeasViewModel()
             {
-                UserIdeas = ideas,
+                UserIdeas = userIdeas,
                 ShowActions = User.Identity.IsAuthenticated,
+                Votes = votes,
                 Heading = "Like Ideas"
             };
 
@@ -53,7 +53,7 @@ namespace RadaCode.Security.Controllers
                 return View("Create", viewModel);
             var idea = new UserIdea
             {
-                UserId = User.Identity.GetUserId(),
+                UserId = IdentityExtensions.GetUserId(User.Identity),
                 Idea = viewModel.Idea,
                 NumberOfVotes   = 0
             };
@@ -67,10 +67,10 @@ namespace RadaCode.Security.Controllers
         
         public ActionResult Votes(VoteViewModel viewModel)
         {
-            var userId = User.Identity.GetUserId();
+            var userId = IdentityExtensions.GetUserId(User.Identity);
             
 
-            if (_context.Votes.Any(a => a.UserId == userId && a.UserIdeaId == viewModel.IdeaId))
+            if (Queryable.Any<Vote>(_context.Votes, a => a.UserId == userId && a.UserIdeaId == viewModel.IdeaId))
                 return Redirect("The choice already exists.");
 
             var vote = new Vote

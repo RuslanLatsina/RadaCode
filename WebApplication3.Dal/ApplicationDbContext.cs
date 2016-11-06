@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using RadaCode.Entities.Identity;
-using RadaCode.Entities.UserIdea;
+using RadaCode.Entities.Models.Identity;
+using RadaCode.Entities.Models.UserIdea;
 
 namespace RadaCode.Dal
 {

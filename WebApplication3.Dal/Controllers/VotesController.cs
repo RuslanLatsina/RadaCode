@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNet.Identity;
-using RadaCode.Dal;
-using RadaCode.Entities.UserIdea;
-using RadaCode.Security.ViewModels;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
+using RadaCode.Entities.Models.UserIdea;
+using RadaCode.Entities.ViewModels;
 
-namespace RadaCode.Security.Controllers
+namespace RadaCode.Dal.Controllers
 {
     [Authorize]
     public class VotesController : ApiController
@@ -23,7 +22,7 @@ namespace RadaCode.Security.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            if (_context.Votes.Any(a => a.UserId == userId && a.UserIdeaId == viewModel.IdeaId))
+            if (Queryable.Any<Vote>(_context.Votes, a => a.UserId == userId && a.UserIdeaId == viewModel.IdeaId))
                 return BadRequest("The choice already exists.");
 
             var vote = new Vote

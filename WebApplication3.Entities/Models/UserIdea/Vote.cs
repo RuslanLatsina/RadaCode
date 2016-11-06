@@ -1,8 +1,8 @@
-﻿using RadaCode.Entities.Identity;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using RadaCode.Entities.Models.Identity;
 
-namespace RadaCode.Entities.UserIdea
+namespace RadaCode.Entities.Models.UserIdea
 {
     public class Vote
     {

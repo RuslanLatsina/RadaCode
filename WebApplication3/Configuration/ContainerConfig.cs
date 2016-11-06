@@ -9,7 +9,7 @@ using SimpleInjector;
 using SimpleInjector.Integration.Web;
 using RadaCode.Dal;
 using RadaCode.Dal.Managers;
-using RadaCode.Entities.Identity;
+using RadaCode.Entities.Models.Identity;
 
 namespace RadaCode
 {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
-using RadaCode.Entities.Identity;
+using RadaCode.Entities.Models.Identity;
 
 namespace RadaCode.Dal.Managers
 {

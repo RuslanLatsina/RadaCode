@@ -6,7 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Facebook;
 using Owin;
 using RadaCode.Dal.Managers;
-using RadaCode.Entities.Identity;
+using RadaCode.Entities.Models.Identity;
 
 namespace RadaCode
 {

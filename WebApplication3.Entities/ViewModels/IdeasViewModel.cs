@@ -1,8 +1,7 @@
-﻿using RadaCode.Entities.UserIdea;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using RadaCode.Entities.Models.UserIdea;
 
-namespace RadaCode.Security.ViewModels
+namespace RadaCode.Entities.ViewModels
 {
     public class IdeasViewModel
     {

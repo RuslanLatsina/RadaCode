@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using RadaCode.Entities.Identity;
+using RadaCode.Entities.Models.Identity;
 
 namespace RadaCode.Dal.Managers
 {

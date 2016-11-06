@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using RadaCode.Entities.Identity;
 using System.ComponentModel.DataAnnotations;
+using RadaCode.Entities.Models.Identity;
 
-namespace RadaCode.Entities.UserIdea
+namespace RadaCode.Entities.Models.UserIdea
 {
     public class UserIdea
     {

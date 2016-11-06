@@ -7,8 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using RadaCode.Dal;
 using RadaCode.Dal.Managers;
-using RadaCode.Entities.Identity;
-
+using RadaCode.Entities.Models.Identity;
 using RadaCode.Security.ViewModels;
 
 namespace RadaCode.Controllers
